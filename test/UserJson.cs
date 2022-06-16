@@ -17,7 +17,7 @@ namespace HttpClientExample
         public int wind_degree { get; set; }
         public string wind_dir { get; set; }
         public int pressure { get; set; }
-        public int precip { get; set; }
+        public float precip { get; set; }
         public int humidity { get; set; }
         public int cloudcover { get; set; }
         public int feelslike { get; set; }

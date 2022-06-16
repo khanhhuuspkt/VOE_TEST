@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace HttpClientExample
 {
@@ -27,20 +28,17 @@ namespace HttpClientExample
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Console.WriteLine($"Tải thành công - statusCode {(int)response.StatusCode} {response.ReasonPhrase}");
-
-
+                        Console.WriteLine($"Get API succcessfully - statusCode {(int)response.StatusCode} {response.ReasonPhrase}");
                         Console.WriteLine("Starting read data");
 
                         // Đọc nội dung content trả về
                         string htmltext = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine($"Nhận được {htmltext.Length} ký tự");
-                        Console.WriteLine();
+                        Console.WriteLine($"Got {htmltext.Length} charaters");
                         return htmltext;
                     }
                     else
                     {
-                        Console.WriteLine($"Lỗi - statusCode {response.StatusCode} {response.ReasonPhrase}");
+                        Console.WriteLine($"Error - statusCode {response.StatusCode} {response.ReasonPhrase}");
                         return null;
                     }
                 }
@@ -51,6 +49,33 @@ namespace HttpClientExample
                 }
             }
         }
+        public static void ApiHandle(Root myDeserializedClass)
+        {
+            try
+            {
+                if (Regex.IsMatch(myDeserializedClass.current.weather_descriptions[0], ".*rain.*", RegexOptions.IgnoreCase))
+                {
+                    Console.WriteLine("you cannot go outside, It's raining");
+                }
+                else
+                {
+                    Console.WriteLine("you can go outside, The weather is well");
+                    if (myDeserializedClass.current.wind_speed > 15)
+                    {
+                        Console.WriteLine("You can fly your kite");
+                    }
+                }
+                if (myDeserializedClass.current.uv_index > 3)
+                {
+                    Console.WriteLine("don't foget to wear The sunscreen");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         static void Main(string[] args)
         {
             try
@@ -59,7 +84,7 @@ namespace HttpClientExample
                 htmltask.Wait(); // Chờ tải xong
                                  // Hoặc wait htmltask; nếu chuyển Main thành async 
                 var myDeserializedClass = JsonConvert.DeserializeObject<Root>(htmltask.Result);
-                Console.WriteLine(myDeserializedClass.current.observation_time);
+                Program.ApiHandle(myDeserializedClass);
 
                 //var html = htmltask.Result;
                 //Console.WriteLine(html != null ? html.Substring(0, 255) : "Lỗi");
