@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "vMqvknyF14yZAWDk2Vt6kmj4MqocAS6cr+vFJWAiHSZx7KH1Gstll6BSvh70Q+Mfr8pwf+AxDrx93CfzfMMj8g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ukulele\\Desktop\\Git_Interview\\test\\test\\test\\test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ukulele\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
