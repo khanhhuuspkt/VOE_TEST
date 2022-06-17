@@ -8,9 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace practise
 {
-    class ApiSetHandle
+    class ApiGetHandle
     {
-        public static async Task<string> GetWebContent(string url)
+        public static async Task<string> GetApiContent(string url) // To create a new thread getting API response
         {
             using (var httpClient = new HttpClient())
             {
@@ -39,6 +39,22 @@ namespace practise
                     Console.WriteLine(e.Message);
                     return null;
                 }
+            }
+        }
+    }
+    class JsonDeserializingConvert
+    {
+        public static Root ConvertDe(string apiGetResult)
+        {
+            try
+            {
+                var myDeserializedClass = JsonConvert.DeserializeObject<Root>(apiGetResult);
+                return myDeserializedClass;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
             }
         }
     }

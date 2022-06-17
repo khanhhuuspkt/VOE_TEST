@@ -1,0 +1,24 @@
+test case 1:
+{
+    "request": {
+        "type": "Zipcode",
+        "query": "30076",
+...
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0040_thunderstorms_night.png"
+        ],
+        "weather_descriptions": [
+            "Light Rain With Thunderstorm"
+        ],
+        "wind_speed": 13,
+...
+        "feelslike": 33,
+        "uv_index": 5,
+        "visibility": 8,
+        "is_day": "no"
+    }
+}
+=>>
+Output : you cannot go outside, It's raining
+Output : don't foget to wear The sunscreen
+test case 2:
